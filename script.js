@@ -6,6 +6,8 @@ const newCardBtn = document.querySelector('.newcard-btn')
 
 let firstCard = 10
 let secondCard = 7
+
+let cards = [firstCard, secondCard]
 let sum = firstCard + secondCard
 let hasBlackJack = false
 let isAlive = true
@@ -13,8 +15,12 @@ let message = ""
 
 
 function startGame() {
+    renderGame()
+}
+
+function renderGame() {
     sumEl.textContent = `Sum : ${sum}`
-    cardsEl.textContent = `Cards : ${firstCard} ${secondCard}`
+    cardsEl.textContent = `Cards : ${cards[0]} ${cards[1]} ${cards[2]}`
 
     if(sum <= 20){
         message = "Do you want to draw a new card?"
@@ -33,10 +39,9 @@ startBtn.addEventListener('click', startGame)
 
 function newCard() {
     const newCard = 4
-
     sum += newCard
-
-    startGame()
+    cards.push(newCard)
+    renderGame()
 }
 newCardBtn.addEventListener('click', newCard)
 
