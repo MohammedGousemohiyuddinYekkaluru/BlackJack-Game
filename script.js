@@ -5,14 +5,14 @@ const cardsEl = document.querySelector('.cards-el');
 const newCardBtn = document.querySelector('.newcard-btn')
 
 let firstCard = 10
-let secondCard = 11
+let secondCard = 7
 let sum = firstCard + secondCard
 let hasBlackJack = false
 let isAlive = true
 let message = ""
 
-startBtn.addEventListener('click', () => {
 
+function startGame() {
     sumEl.textContent = `Sum : ${sum}`
     cardsEl.textContent = `Cards : ${firstCard} ${secondCard}`
 
@@ -26,9 +26,17 @@ startBtn.addEventListener('click', () => {
         isAlive = false
     }
     messageText.textContent = message
-})
+}
 
-newCardBtn.addEventListener('click', () => {
-    console.log("new card btn clicked")
-})
+startBtn.addEventListener('click', startGame)
+
+
+function newCard() {
+    const newCard = 4
+
+    sum += newCard
+
+    startGame()
+}
+newCardBtn.addEventListener('click', newCard)
 
