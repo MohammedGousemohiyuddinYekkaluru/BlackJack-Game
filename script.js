@@ -2,6 +2,7 @@ const startBtn = document.querySelector('.start-btn');
 const messageText = document.querySelector('.message');
 const sumEl = document.querySelector('.sum-el');
 const cardsEl = document.querySelector('.cards-el');
+const newCardBtn = document.querySelector('.newcard-btn')
 
 let firstCard = 10
 let secondCard = 11
@@ -25,5 +26,9 @@ startBtn.addEventListener('click', () => {
         isAlive = false
     }
     messageText.textContent = message
+})
+
+newCardBtn.addEventListener('click', () => {
+    console.log("new card btn clicked")
 })
 
