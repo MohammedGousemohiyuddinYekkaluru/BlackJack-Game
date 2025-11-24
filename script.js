@@ -4,23 +4,40 @@ const sumEl = document.querySelector('.sum-el');
 const cardsEl = document.querySelector('.cards-el');
 const newCardBtn = document.querySelector('.newcard-btn')
 
-let firstCard = 10
-let secondCard = 7
-
-let cards = [firstCard, secondCard]
-let sum = firstCard + secondCard
+let cards = []
+let sum = 0
 let hasBlackJack = false
-let isAlive = true
+let isAlive = false
 let message = ""
 
+function getRandomNumber() {
+    let randomNumber = Math.floor(Math.random() * 13) + 1 //1 -> 13
+
+    if(randomNumber > 10){
+        return 10
+    }else if(randomNumber === 1){
+        return 11
+    }else{
+        return randomNumber
+    }
+    
+}
 
 function startGame() {
+    isAlive = true
+    let firstCard = getRandomNumber()
+    let secondCard = getRandomNumber()
+    sum += firstCard + secondCard
+    cards.push(firstCard, secondCard)
     renderGame()
 }
 
 function renderGame() {
     sumEl.textContent = `Sum : ${sum}`
-    cardsEl.textContent = `Cards : ${cards[0]} ${cards[1]} ${cards[2]}`
+    cardsEl.textContent = "Cards : "
+    for(let i = 0; i <= cards.length - 1; i++) {
+        cardsEl.textContent +=  `${cards[i]} `
+    }
 
     if(sum <= 20){
         message = "Do you want to draw a new card?"
@@ -38,10 +55,11 @@ startBtn.addEventListener('click', startGame)
 
 
 function newCard() {
-    const newCard = 4
+    const newCard = getRandomNumber()
     sum += newCard
     cards.push(newCard)
     renderGame()
 }
 newCardBtn.addEventListener('click', newCard)
+
 
