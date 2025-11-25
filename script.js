@@ -4,6 +4,7 @@ const sumEl = document.querySelector(".sum-el");
 const cardsEl = document.querySelector(".cards-el");
 const newCardBtn = document.querySelector(".newcard-btn");
 const playerel = document.querySelector("#player-el");
+const newGameBtn = document.querySelector(".newGame-btn");
 
 let cards = [];
 let sum = 0;
@@ -12,11 +13,11 @@ let isAlive = false;
 let message = "";
 
 let player = {
-    name : "Gouse",
-    chips : 150
-}
+  name: "Gouse",
+  chips: 150,
+};
 
-playerel.textContent = `${player.name} : $${player.chips}`
+playerel.textContent = `${player.name} : $${player.chips}`;
 
 function getRandomNumber() {
   let randomNumber = Math.floor(Math.random() * 13) + 1; //1 -> 13
@@ -31,12 +32,14 @@ function getRandomNumber() {
 }
 
 function startGame() {
-  isAlive = true;
-  let firstCard = getRandomNumber();
-  let secondCard = getRandomNumber();
-  sum += firstCard + secondCard;
-  cards.push(firstCard, secondCard);
-  renderGame();
+  if (cards.length <= 0) {
+    isAlive = true;
+    let firstCard = getRandomNumber();
+    let secondCard = getRandomNumber();
+    sum += firstCard + secondCard;
+    cards.push(firstCard, secondCard);
+    renderGame();
+  }
 }
 
 function renderGame() {
