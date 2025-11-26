@@ -48,6 +48,9 @@ function renderGame() {
   for (let i = 0; i <= cards.length - 1; i++) {
     cardsEl.textContent += `${cards[i]} `;
   }
+  if (isAlive === true && hasBlackJack === false) {
+    newGameBtn.style.display = "none";
+  }
 
   if (sum <= 20) {
     message = "Do you want to draw a new card?";
@@ -70,5 +73,17 @@ function newCard() {
     cards.push(newCard);
     renderGame();
   }
+
+  if (isAlive === false || hasBlackJack === true) {
+    newGameBtn.style.display = "block";
+  }
 }
 newCardBtn.addEventListener("click", newCard);
+
+function newGame() {
+  cards = [];
+  sum = 0;
+  startGame();
+}
+
+newGameBtn.addEventListener("click", newGame);
